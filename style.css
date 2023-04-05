@@ -435,6 +435,9 @@ li:hover{
 
 }
 @media screen and (max-width: 952px) {
+	aside{
+		visibility:hidden;
+	}
 	.logo {
 		font-size: 30px;
 		padding-right: 35px;
@@ -445,6 +448,9 @@ li:hover{
 }
 
 @media screen and (max-width: 750px) {
+	aside{
+		visibility:hidden;
+	}
 	.menu {
 		height: 65px;
 	}
@@ -488,12 +494,13 @@ li:hover{
 		padding-left: 35px;
 	}
 	main .card.card_2 {
-	padding-top: 200px;
+	padding-top: 20px;
+	margin-bottom:40px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: stretch;
-	gap: 20px;
+	align-items: center;
+	gap: 10px;
 }
 
 }
