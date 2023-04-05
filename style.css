@@ -487,4 +487,13 @@ li:hover{
 		font-size: 25px;
 		padding-left: 35px;
 	}
+	.card.card_2 {
+	padding-top: 200px;
+	display: flex;
+	flex-direction: colunm;
+	justify-content: center;
+	align-items: stretch;
+	gap: 20px;
+}
+
 }
