@@ -168,23 +168,71 @@ body {
 .orbit {
   position: absolute; border-radius: 50%;
   border: 1px solid transparent;
+}
+.orbit-1 { width: 240px; height: 240px; animation: spin 12s linear infinite; border-color: rgba(79,138,255,0.18); }
+.orbit-2 { width: 285px; height: 285px; animation: spin 18s linear infinite reverse; border-color: rgba(0,217,255,0.12); }
+.orbit-3 { width: 205px; height: 205px; animation: spin 24s linear infinite; border-color: rgba(168,85,247,0.12); }
+
+/* Orbit anchors — position chips at a given angle on the ring */
+.orbit-anchor {
+  position: absolute; inset: 0; border-radius: 50%;
+  transform: rotate(var(--rot, 0deg));
   display: flex; align-items: flex-start; justify-content: center;
 }
-.orbit-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  margin-top: -3.5px; position: relative;
+
+/* Skill icon chips */
+.orbit-chip {
+  width: 34px; height: 34px; margin-top: -17px;
+  border-radius: 50%; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative; cursor: default;
 }
+.orbit-chip svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-.orbit-1 { width: 230px; height: 230px; animation: spin 12s linear infinite; border-color: rgba(79,138,255,0.2); }
-.orbit-1 .orbit-dot { background: var(--primary); box-shadow: 0 0 8px var(--primary); }
+/* Tooltip */
+.orbit-chip::after {
+  content: attr(data-label);
+  position: absolute; top: calc(100% + 7px); left: 50%; transform: translateX(-50%);
+  background: rgba(6,16,31,0.95); color: var(--text);
+  font-family: 'Inter', sans-serif; font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.05em; white-space: nowrap;
+  padding: 0.22rem 0.55rem; border-radius: 6px; border: 1px solid var(--border);
+  opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 20;
+}
+.orbit-chip:hover::after { opacity: 1; }
+.orbit-chip:hover { transform: scale(1.15); }
 
-.orbit-2 { width: 265px; height: 265px; animation: spin 18s linear infinite reverse; border-color: rgba(0,217,255,0.15); }
-.orbit-2 .orbit-dot { background: var(--accent); box-shadow: 0 0 8px var(--accent); width: 5px; height: 5px; margin-top: -2.5px; }
+/* Chip color variants */
+.chip-blue       { background: rgba(79,138,255,0.12); border-color: rgba(79,138,255,0.35); }
+.chip-blue       svg { stroke: var(--primary); }
+.chip-blue       { box-shadow: 0 0 10px rgba(79,138,255,0.2); }
 
-.orbit-3 { width: 200px; height: 200px; animation: spin 24s linear infinite; border-color: rgba(168,85,247,0.15); }
-.orbit-3 .orbit-dot { background: var(--purple); box-shadow: 0 0 8px var(--purple); width: 5px; height: 5px; margin-top: -2.5px; }
+.chip-blue-soft  { background: rgba(79,138,255,0.07); border-color: rgba(79,138,255,0.25); }
+.chip-blue-soft  svg { stroke: #7aaaff; }
 
-@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.chip-cyan       { background: rgba(0,217,255,0.1); border-color: rgba(0,217,255,0.3); }
+.chip-cyan       svg { stroke: var(--accent); }
+.chip-cyan       { box-shadow: 0 0 10px rgba(0,217,255,0.15); }
+
+.chip-cyan-soft  { background: rgba(0,217,255,0.07); border-color: rgba(0,217,255,0.2); }
+.chip-cyan-soft  svg { stroke: #5de8ff; }
+
+.chip-purple     { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); }
+.chip-purple     svg { stroke: var(--purple); }
+.chip-purple     { box-shadow: 0 0 10px rgba(168,85,247,0.15); }
+
+.chip-yellow     { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.25); }
+.chip-yellow     svg { stroke: #fbbf24; }
+
+/* Counter-rotate chips so icons stay upright while orbiting */
+.orbit-1 .orbit-chip { animation: spin-ctr 12s linear infinite; }
+.orbit-2 .orbit-chip { animation: spin    18s linear infinite; }
+.orbit-3 .orbit-chip { animation: spin-ctr 24s linear infinite; }
+
+@keyframes spin     { from { transform: rotate(0deg);    } to { transform: rotate(360deg);  } }
+@keyframes spin-ctr { from { transform: rotate(0deg);    } to { transform: rotate(-360deg); } }
 
 .avatar-badge {
   position: absolute; bottom: 0; right: 0;
